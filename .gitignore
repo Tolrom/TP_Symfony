@@ -3,10 +3,12 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+.env
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/
+/bin/taili
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
@@ -23,3 +25,7 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> tailwindcss ###
+/bin/tailwindcss
+###< tailwindcss ###
