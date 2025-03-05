@@ -8,30 +8,21 @@
         <h2 class="mb-6 text-2xl font-bold text-gray-900 md:text-3xl dark:text-white">
             Articles
         </h2>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 px-1">
+        {% for article in articles %}
             <div class="p-4 flex flex-col justify-between gap-2 border rounded-lg shadow-md bg-white dark:bg-gray-700 dark:border-gray-400/40">
-                <a class="text-xl font-semibold text-blue-700 hover:underline two-lines dark:text-blue-100" href="/article/1">
-                    Football Legends Gerrard and Carragher Fall Prey to Fictitious Rap Song
+                <a class="text-xl font-semibold text-blue-700 hover:underline two-lines dark:text-blue-100" href="/article/{{article.id}}">
+                    {{ article.title }}
                 </a>
-
                 <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
+                    {% for cat in article.categories %}
                     <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Entertainment
-                </span>
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Sports
-                </span>
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Crime
-                </span>
+                        {{ cat.name }}
+                    </span>
+                    {% endfor %}
                 </div>
-
                 <p class="text-gray-800 two-lines dark:text-gray-300">
-                    A disconcerting rap song about murder featuring fake voices of renowned footballers Steven Gerrard
-                    and
-                    Jamie
-                    Carragher, created by prisoner L20 Mazza, has become a sensation online.
+                    {{ article.content }}
                 </p>
 
                 <div class="flex items-center justify-between text-sm">
@@ -39,106 +30,13 @@
                     2 min read
                 </button>
 
-                    <a href="/article/1" class="text-blue-700 hover:underline dark:text-white">
+                    <a href="/article/{{article.id}}" class="text-blue-700 hover:underline dark:text-white">
                         Read more
                     </a>
                 </div>
             </div>
-            <div class="p-4 flex flex-col justify-between gap-2 border rounded-lg shadow-md bg-white dark:bg-gray-700 dark:border-gray-400/40">
-                <a class="text-xl font-semibold text-blue-700 hover:underline two-lines dark:text-blue-100" href="/article/2">
-                    How The Late Queen Elizabeth II Understood Meghan Markle's Influence
-                </a>
-
-                <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Entertainment
-                </span>
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Lifestyle
-                </span>
-                </div>
-
-                <p class="text-gray-800 two-lines dark:text-gray-300">
-                    The late Queen Elizabeth II saw potential in Meghan Markle's presence in the Royal Family. She even
-                    offered
-                    Meghan the opportunity to continue her acting career while serving as a royal. Nevertheless, Meghan
-                    chose to
-                    dedicate herself to her royal duties.
-                </p>
-
-                <div class="flex items-center justify-between text-sm">
-                    <button class="text-gray-500 dark:text-gray-300">
-                    2 min read
-                </button>
-
-                    <a href="/article/2" class="text-blue-700 hover:underline dark:text-white">
-                        Read more
-                    </a>
-                </div>
-            </div>
-            <div class="p-4 flex flex-col justify-between gap-2 border rounded-lg shadow-md bg-white dark:bg-gray-700 dark:border-gray-400/40">
-                <a class="text-xl font-semibold text-blue-700 hover:underline two-lines dark:text-blue-100" href="/article/3">
-                    Gaby Roslin Shares Rays of Hope in her New Book: Spread The Joy
-                </a>
-
-                <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Entertainment
-                </span>
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Lifestyle
-                </span>
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Health
-                </span>
-                </div>
-
-                <p class="text-gray-800 two-lines dark:text-gray-300">
-                    Renowned TV presenter Gaby Roslin is out to spread positivity and resilience through her upcoming
-                    book
-                    'Spread
-                    the Joy', sharing her own journey through grief, success, and the belief in a positive outlook on
-                    life.
-                </p>
-
-                <div class="flex items-center justify-between text-sm">
-                    <button class="text-gray-500 dark:text-gray-300">
-                    2 min read
-                </button>
-
-                    <a href="/article/3" class="text-blue-700 hover:underline dark:text-white">
-                        Read more
-                    </a>
-                </div>
-            </div>
-            <div class="p-4 flex flex-col justify-between gap-2 border rounded-lg shadow-md bg-white dark:bg-gray-700 dark:border-gray-400/40">
-                <a class="text-xl font-semibold text-blue-700 hover:underline two-lines dark:text-blue-100" href="/article/4">
-                    Starting the Hard Talk: Discussing Funeral Plans
-                </a>
-
-                <div class="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
-                    <span class="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-600">
-                    Lifestyle
-                </span>
-                </div>
-
-                <p class="text-gray-800 two-lines dark:text-gray-300">
-                    Linda Charlton, an only child who had to plan her parents' funerals, encourages others not to leave
-                    their loved
-                    ones under financial and emotional stress. She's an advocate for planning funerals in advance.
-                </p>
-
-                <div class="flex items-center justify-between text-sm">
-                    <button class="text-gray-500 dark:text-gray-300">
-                    2 min read
-                </button>
-
-                    <a href="/article/4" class="text-blue-700 hover:underline dark:text-white">
-                        Read more
-                    </a>
-                </div>
-            </div>
-        </div>
+       {% endfor %} 
+    </div>
     </section>
 </div>
 {% endblock %}
