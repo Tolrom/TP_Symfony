@@ -26,9 +26,12 @@
                 </p>
 
                 <div class="flex items-center justify-between text-sm">
-                    <button class="text-gray-500 dark:text-gray-300">
-                    2 min read
-                </button>
+                    <span class="text-gray-500 dark:text-gray-300">
+                        {{ article.createdAt |date("m/d/Y - h:m") }}
+                    </span>
+                    <span class="text-gray-500 dark:text-gray-300">
+                        Written by {{ article.author.firstname }}  {{ article.author.lastname }}
+                    </span>
 
                     <a href="/article/{{article.id}}" class="text-blue-700 hover:underline dark:text-white">
                         Read more
