@@ -36,10 +36,8 @@ class ApiAccountController extends AbstractController
     #[Route('api/addaccount', name: 'app_account_add', methods: ['POST'])]
     public function addAccount(Request $request): Response
     {
-        $request = $request->getContent();
-        // dd($request);
-        $account = $this->serializer->deserialize($request, Account::class, 'json');
-        // dd($account);c
+        $json = $request->getContent();
+        $account = $this->serializer->deserialize($json, Account::class, 'json');
 
         if (!$this->accountRepository->findOneBy(["email" => $account->getEmail()])) {
             $this->em->persist($account);

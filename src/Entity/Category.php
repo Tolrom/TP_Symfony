@@ -20,17 +20,6 @@ class Category
     #[Groups(['category:read', 'articles:read'])]
     private ?string $name = null;
 
-    /**
-     * @var Collection<int, Article>
-     */
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'categories')]
-    private Collection $articles;
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -44,30 +33,6 @@ class Category
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): static
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): static
-    {
-        $this->articles->removeElement($article);
 
         return $this;
     }

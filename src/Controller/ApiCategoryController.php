@@ -37,10 +37,8 @@ class ApiCategoryController extends AbstractController
     #[Route('api/category', name: 'app_category_add', methods: ['POST'])]
     public function addCategory(Request $request): Response
     {
-        $request = $request->getContent();
-        // dd($request);
-        $category = $this->serializer->deserialize($request, Category::class, 'json');
-        // dd($category);
+        $json = $request->getContent();
+        $category = $this->serializer->deserialize($json, Category::class, 'json');
 
         if (!$this->categoryRepository->findOneBy(["name" => $category->getName()])) {
             $this->em->persist($category);
