@@ -16,13 +16,25 @@ class ApiArticleController extends AbstractController
     }
 
     #[Route('/api/articles', name: 'app_article_get')]
-    public function getCategories(): Response
+    public function getArticles(): Response
     {
         return $this->json(
             $this->articleRepository->findAll(),
             200,
             [],
-            ['groups' => 'article:read']
+            ['groups' => 'articles:read']
+
+        );
+
+    }
+    #[Route('/api/article/{id}', name: 'app_article_getOne')]
+    public function getArticleById(int $id): Response
+    {
+        return $this->json(
+            $this->articleRepository->find($id),
+            200,
+            [],
+            ['groups' => ['articles:read', 'article:read']]
 
         );
 

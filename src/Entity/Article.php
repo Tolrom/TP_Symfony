@@ -15,29 +15,30 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['article:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['article:read'])]
+    #[Groups(['articles:read'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['article:read'])]
+    #[Groups(['articles:read'])]
     private ?string $content = null;
 
     #[ORM\Column]
-    #[Groups(['article:read'])]
+    #[Groups(['articles:read'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    #[Groups(['article:read'])]
+    #[Groups(['articles:read'])]
     private ?Account $author = null;
 
     /**
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'articles')]
-    #[Groups(['article:read'])]
+    #[Groups(['articles:read'])]
     private Collection $categories;
 
     public function __construct()
