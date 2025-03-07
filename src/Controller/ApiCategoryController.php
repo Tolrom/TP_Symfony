@@ -21,7 +21,7 @@ class ApiCategoryController extends AbstractController
     ) {
     }
 
-    #[Route('/api/categories', name: 'app_category_get')]
+    #[Route('/api/categories', name: 'api_category_get')]
     public function getCategories(): Response
     {
         return $this->json(
@@ -34,7 +34,7 @@ class ApiCategoryController extends AbstractController
 
     }
 
-    #[Route('api/category', name: 'app_category_add', methods: ['POST'])]
+    #[Route('api/category/add', name: 'api_category_add', methods: ['POST'])]
     public function addCategory(Request $request): Response
     {
         $json = $request->getContent();

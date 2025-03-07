@@ -26,7 +26,7 @@ class ApiArticleController extends AbstractController
     ) {
     }
 
-    #[Route('/api/articles', name: 'app_article_get')]
+    #[Route('/api/articles', name: 'api_article_get')]
     public function getArticles(): Response
     {
         return $this->json(
@@ -38,7 +38,7 @@ class ApiArticleController extends AbstractController
         );
 
     }
-    #[Route('/api/article/{id}', name: 'app_article_getOne')]
+    #[Route('/api/article/{id}', name: 'api_article_getOne')]
     public function getArticleById(int $id): Response
     {
         $article = $this->articleRepository->find($id);
@@ -56,7 +56,7 @@ class ApiArticleController extends AbstractController
         );
     }
 
-    #[Route('api/addarticle', name: 'app_article_add', methods: ['POST'])]
+    #[Route('api/article/add', name: 'api_article_add', methods: ['POST'])]
     public function addArticle(Request $request): Response
     {
         $json = $request->getContent();
