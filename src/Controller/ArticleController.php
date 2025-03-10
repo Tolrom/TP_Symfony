@@ -9,20 +9,24 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
+    public function __construct(
+        private readonly ArticleRepository $articleRepository,
+        private readonly EntityManagerInterface $em
+    ) {}
 
     #[Route(path: "/articles", name: "app_user_articles")]
-    public function allArticles(EntityManagerInterface $em): Response
+    public function allArticles(): Response
     {
-        $articles = $em->getRepository(Article::class)->findAll();
+        $articles = $this->em->getRepository(Article::class)->findAll();
         return $this->render('articles.html.twig', [
             'articles' => $articles
         ]);
     }
 
     #[Route(path: "/article/{id}", name: "app_user_article")]
-    public function article(EntityManagerInterface $em, $id): Response
+    public function article($id): Response
     {
-        $article = $em->getRepository(Article::class)->find($id) ;
+        $article = $this->em->getRepository(Article::class)->find($id) ;
         return $this->render(
             'article.html.twig',
             [

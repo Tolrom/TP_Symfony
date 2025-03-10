@@ -15,7 +15,7 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['article:read'])]
+    #[Groups(['articles:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
@@ -30,14 +30,14 @@ class Article
     #[Groups(['articles:read'])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\ManyToOne]
     #[Groups(['articles:read'])]
     private ?Account $author = null;
 
     /**
      * @var Collection<int, Category>
      */
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'articles')]
+    #[ORM\ManyToMany(targetEntity: Category::class)]
     #[Groups(['articles:read'])]
     private Collection $categories;
 

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add an account{% endblock %}
+
+{% block body %}
+<turbo-frame id="id-account">
+    <div>
+        {{ form_start(form) }}
+        {{ form_widget(form.firstname) }}
+        {{ form_widget(form.lastname) }}
+        {{ form_widget(form.email) }}
+        {{ form_widget(form.password) }}
+        {{ form_rest(form)}}
+        {{ form_end(form) }}
+    </div>
+    {% include "partials/_toast.html.twig" %}
+</turbo-frame>
+{% endblock %}

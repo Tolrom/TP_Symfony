@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adding new category{% endblock %}
+
+{% block body %}
+<turbo-frame id="id-category">
+    <form>
+        {{ form_start(form) }}
+        {{ form_widget(form.name) }}
+        {{ form_rest(form)}}
+        {{ form_end(form) }}
+    </form>
+    {% include "partials/_toast.html.twig" %}
+</turbo-frame>
+{% endblock %}
