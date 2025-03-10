@@ -48,8 +48,8 @@ class UserController extends AbstractController
         $msg = "";
         $status ="";
         if($form->isSubmitted()){
-            dd($request);
             try {
+                $account->setRole('ROLE_USER');
                 $this->em->persist($account);
                 $this->em->flush();
                 $msg = "Account successfuly added";

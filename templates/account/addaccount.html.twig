@@ -3,11 +3,14 @@
 {% block title %}Add an account{% endblock %}
 
 {% block body %}
-<turbo-frame id="id-account">
+<turbo-frame id="id-account" data-turbo-action="advance" target="_top" >
     <div>
         {{ form_start(form) }}
+        {{ form_label(form.firstname) }}
         {{ form_widget(form.firstname) }}
+        {{ form_label(form.lastname) }}
         {{ form_widget(form.lastname) }}
+        {{ form_label(form.email) }}
         {{ form_widget(form.email) }}
         {{ form_widget(form.password) }}
         {{ form_rest(form)}}
