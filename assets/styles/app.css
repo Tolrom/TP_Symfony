@@ -20,6 +20,15 @@ body {
 #id-account form>div {
     display: flex;
 }
+#weather {
+    display: flex;
+    justify-content: center;
+}
+#weather>div {
+    background-color: darkslategrey;
+    color: white;
+    margin: 7em;
+}
 .required::after {
     content: '*';
     color: red;
