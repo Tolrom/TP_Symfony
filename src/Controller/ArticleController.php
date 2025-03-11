@@ -18,7 +18,7 @@ class ArticleController extends AbstractController
     public function allArticles(): Response
     {
         $articles = $this->em->getRepository(Article::class)->findAll();
-        return $this->render('articles.html.twig', [
+        return $this->render('article/articles.html.twig', [
             'articles' => $articles
         ]);
     }
@@ -28,7 +28,7 @@ class ArticleController extends AbstractController
     {
         $article = $this->em->getRepository(Article::class)->find($id) ;
         return $this->render(
-            'article.html.twig',
+            'article/article.html.twig',
             [
                 'article' => $article
             ]

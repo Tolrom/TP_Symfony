@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<article class="max-w-2xl px-6 py-24 mx-auto space-y-12 dark:bg-gray-100 dark:text-gray-900">
+
+		<div class="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
+			<img src="https://i.pinimg.com/280x280_RS/dc/50/82/dc5082214f78512ef54b3c0634afd1d3.jpg" alt="" class="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-300">
+			<div class="flex flex-col">
+				<h4 class="text-lg font-semibold">
+					{{ user.firstname }}
+					{{ user.lastname }}
+				</h4>
+				<p class="dark:text-gray-600">
+					{{ user.email }}
+				</p>
+			</div>
+		</div>
+</article>
+{% include "partials/_toast.html.twig" %}
+{% endblock %}
+  

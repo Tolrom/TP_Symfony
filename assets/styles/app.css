@@ -5,3 +5,22 @@
 body {
     background-color: white;
 }
+#id-account>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#id-account div form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+#id-account form>div {
+    display: flex;
+}
+.required::after {
+    content: '*';
+    color: red;
+}

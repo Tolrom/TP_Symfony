@@ -5,14 +5,25 @@
 {% block body %}
 <turbo-frame id="id-account" data-turbo-action="advance" target="_top" >
     <div>
-        {{ form_start(form) }}
-        {{ form_label(form.firstname) }}
-        {{ form_widget(form.firstname) }}
-        {{ form_label(form.lastname) }}
-        {{ form_widget(form.lastname) }}
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email) }}
-        {{ form_widget(form.password) }}
+        {{ form_start(form, { attr: {
+            class: 'max-w-md mx-auto'}
+        })
+        }}
+        <div class="relative z-0 w-full mb-5 group">
+            {{ form_label(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            {{ form_label(form.lastname) }}
+            {{ form_widget(form.lastname) }}
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            {{ form_widget(form.password) }}
+        </div>
         {{ form_rest(form)}}
         {{ form_end(form) }}
     </div>

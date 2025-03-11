@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Form\AccountType;
 use App\Repository\AccountRepository;
+use App\Service\AccountService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,14 +15,22 @@ class UserController extends AbstractController
 {
     public function __construct(
         private readonly AccountRepository $accountRepository,
-        private readonly EntityManagerInterface $em
+        private readonly AccountService $accountService
     ) {}
 
     #[Route(path: "/users", name: "app_user_list")]
     public function allAccounts(EntityManagerInterface $em): Response
     {
-        $users = $em->getRepository(Account::class)->findAll();
-        return $this->render('users.html.twig', [
+        try {
+            $users = $this->accountService->getAll();
+            $type = "success";
+            $msg = "Accounts successfully fetched";
+        } catch (\Exception $e) {
+            $type = "danger";
+            $msg = $e->getMessage();
+        }
+        $this->addFlash($type, $msg);
+        return $this->render('account/users.html.twig', [
             'users' => $users
         ]);
     }
@@ -40,29 +49,52 @@ class UserController extends AbstractController
 
     #[Route('/account/add', name:'app_account_add')]
     public function addAccount(Request $request): Response
-    {   
-        
-        $account = new Account();
-        $form = $this->createForm(AccountType::class, $account);
+    {
+        $user = new Account();
+        $form = $this->createForm(AccountType::class, $user);
         $form->handleRequest($request);
+        $type = "";
         $msg = "";
-        $status ="";
-        if($form->isSubmitted()){
+        // Form submitted
+        if($form->isSubmitted() && $form->isValid()) {
             try {
-                $account->setRole('ROLE_USER');
-                $this->em->persist($account);
-                $this->em->flush();
-                $msg = "Account successfuly added";
-                $status = "success";
-            } catch (\Exception $e) {
-                $msg ="This email is already registered";
-                $status = "danger";
+                // Call to save method from the service
+                $this->accountService->save($user);
+                $type = "success";
+                $msg = "Account successfully added";
+            } 
+            // Catch exceptions
+            catch (\Exception $e) {
+                $type = "danger";
+                $msg = $e->getMessage();
             }
+            
+            $this->addFlash($type, $msg);
         }
-        $this->addFlash($status, $msg);
-        return $this->render('account/addaccount.html.twig',
-        [
-            'form'=> $form
+        return $this->render('account/addaccount.html.twig',[
+            'form' =>$form
         ]);
+    }
+
+    #[Route(path: "/account/{id}", name: "app_user_account")]
+    public function showById(int $id): Response
+    {
+        $user = new Account();
+        try {
+            $user = $this->accountService->getById($id) ;
+            $type = "success";
+            $msg = "Account successfully fetched";
+        } catch (\Exception $e) {
+            $type = "danger";
+            $msg = $e->getMessage();
+        }
+        
+        $this->addFlash($type, $msg);
+        return $this->render(
+            'account/user.html.twig',
+            [
+                'user' => $user
+            ]
+        );
     }
 }
